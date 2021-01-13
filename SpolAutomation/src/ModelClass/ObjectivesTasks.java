@@ -35,15 +35,19 @@ public class ObjectivesTasks {
 	By findStatusField=By.xpath("//label[contains(text(),'Status:')]//following::input[1]");
 	By findCompletedDateText=By.xpath("//label[contains(text(),'Completed Date:')]");
 	By findCompletedDateField=By.xpath("//label[contains(text(),'Completed Date:')]//following::input[1]");
+	By findCompletedDateFieldCalendar=By.xpath("//label[contains(text(),'Completed Date:')]//following::span[3]");
 	By findDescriptionText=By.xpath("//label[contains(text(),'Description:')]");
 	By findDescriptionField=By.cssSelector("div.ProseMirror");
+	By findDescriptionDropdown=By.cssSelector("span.k-input");
+	By findDescriptionRequiredMessage=By.xpath("//span[contains(text(),'Task Description is required')]");
 	By findCancelButton=By.xpath("//button[contains(text(),'Cancel')]");
 	By findSaveButton=By.xpath("//button[contains(text(),'Save')]");
 	By findStartDateGraterThanDueDate=By.xpath("//span[contains(text(), 'Start Date must be before the Due Date.')]");
 	By findTaskTypeRequiredMessage=By.xpath("//span[contains(text(),' Task Type is required ')]");
 	By findPriorityLevelRequiredMessage=By.xpath("//span[contains(text(),' Priority Level is required ')]");
 	By findStatusRequiredMessage=By.xpath("//span[contains(text(),' Task Status is required ')]");
-	
+	By findCompletedDateValidationErrorMessage=By.xpath("//span[contains(text(), 'Start Date must be before the Completed Date.')]");
+	  
 	public WebElement isTasksRowPlusButtonVisible() {
 		return driver.findElement(tasksRowPlusButton);
 	}
@@ -52,7 +56,8 @@ public class ObjectivesTasks {
 		return driver.findElement(linkTextTasks);
 	}
 	
-	public WebElement isAddTaskNewFormDisplay() {
+	public WebElement isAddTaskNewFormDisplay() throws InterruptedException {
+		Thread.sleep(2000);
 		return driver.findElement(linkTextTasks);
 	}
 	
@@ -60,13 +65,15 @@ public class ObjectivesTasks {
 		return driver.findElement(taskAddSectionHeaderText);
 	}
 	
-	public WebElement isAddTaskNewFormDisplayClickPlusButton() {
+	public WebElement isAddTaskNewFormDisplayClickPlusButton() throws InterruptedException {
 		//JavascriptExecutor js = (JavascriptExecutor) driver;
 		//js.executeScript("arguments[0].click();", tasksRowPlusButton);
+		Thread.sleep(2000);
 		return driver.findElement(taskAddSectionHeaderText);
 	}
 	//Add Task
-	public WebElement getObjectiveTaskAddSectionHeaderText() {
+	public WebElement getObjectiveTaskAddSectionHeaderText() throws InterruptedException {
+		Thread.sleep(2000);
 		return driver.findElement(taskAddSectionHeaderText);
 	}
 	
@@ -102,7 +109,7 @@ public class ObjectivesTasks {
 		return driver.findElement(findDescriptionField);
 	}
 
-	public WebElement getObjectiveDueDateCalendar() {
+	public WebElement getObjectiveDueDateFieldText() {
 		return driver.findElement(findDueDateField);
 	}
 
@@ -263,6 +270,54 @@ public class ObjectivesTasks {
 		WebElement wele2=wele1.get(2);
 		wele1.get(2).click();
 		return wele2;
+	}
+
+	public WebElement getObjectiveSelectValueFromStatusDropdown() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findStatusField).sendKeys("Pending");
+		return driver.findElement(findStatusField);
+	}
+
+	public WebElement getObjectiveRemoveValueFromCompletedDateField() {
+		JavascriptExecutor jse1 = (JavascriptExecutor)driver;
+		WebElement ele1=driver.findElement(findCompletedDateField);
+		jse1.executeScript("arguments[0].value='month/day/year';", ele1);
+		return driver.findElement(findCompletedDateField);
+	}
+
+	public WebElement getObjectiveErrorValidationCompletionDate() throws InterruptedException {
+		//Start Date calendar
+		Thread.sleep(2000);
+		driver.findElement(findStartDateFieldCalendar).click();
+		List<WebElement> webele1=driver.findElements(findSelectDateFromDueDateCalendar);
+		webele1.get(10).click();
+		Thread.sleep(2000);
+		//Due Date calendar
+		driver.findElement(findDueDateFieldCalendar).click();
+		List<WebElement> webele=driver.findElements(findSelectDateFromDueDateCalendar);
+		webele.get(12).click();
+		Thread.sleep(2000);
+		//Completed Date calendar
+		driver.findElement(findCompletedDateFieldCalendar).click();
+		List<WebElement> webele2=driver.findElements(findSelectDateFromDueDateCalendar);
+		webele2.get(8).click();
+		Thread.sleep(2000);
+		return driver.findElement(findCompletedDateValidationErrorMessage);
+	}
+
+	public WebElement getObjectiveErrorValidationDescriptionField() throws InterruptedException {
+		Thread.sleep(2000);
+		JavascriptExecutor jse2 = (JavascriptExecutor)driver;
+		WebElement ele2=driver.findElement(findDescriptionDropdown);
+		jse2.executeScript("arguments[0].value='Quotation';", ele2);
+		//driver.findElement(findDescriptionDropdown).sendKeys("Quotation");
+		Thread.sleep(2000);
+		JavascriptExecutor jse3 = (JavascriptExecutor)driver;
+		WebElement ele3=driver.findElement(findDescriptionDropdown);
+		jse3.executeScript("arguments[0].value='Paragraph';", ele3);
+		//driver.findElement(findDescriptionDropdown).sendKeys("Paragraph");
+		Thread.sleep(2000);
+		return driver.findElement(findDescriptionRequiredMessage);
 	}
 	
 }

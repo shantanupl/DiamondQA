@@ -28,7 +28,6 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
 public class ObjectivesAddTask {
-	//s
 	WebDriver driver;
 	AllPlanningPage homepage;
 	SpolLoginPage loginpage;
@@ -59,6 +58,7 @@ public class ObjectivesAddTask {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get("https://diamondqa.strategicplanningonline.com/");
+		//driver.get("https://diamondbeta.strategicplanningonline.com/");
 	}
 	
 	@Test
@@ -69,7 +69,7 @@ public class ObjectivesAddTask {
 		objectives=new ObjectivesTasks(driver);
 		loginpage.typeEmailId("spaul");
 		//Thread.sleep(2000);
-		loginpage.typePassword("sp123");
+		loginpage.typePassword("spaul");
 		//Thread.sleep(2000);
 		loginpage.clickSignIn();
 		WebDriverWait wait = new WebDriverWait(driver,100);
@@ -90,10 +90,11 @@ public class ObjectivesAddTask {
 		//Click Tasks
 		driver.findElement(By.xpath("//button[contains(text(),'Tasks')]")).click();
 		//Click Plus button
+		Thread.sleep(2000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("i.fal.fa-plus.selected")));
         Thread.sleep(3000);
-		if(objectives.getObjectiveTaskAddSectionHeaderText().isEnabled()) {
+		if(objectives.getObjectiveTaskAddSectionHeaderText().isDisplayed()) {
 			testcase1.add("Pass");
 		}
 		else {
@@ -102,7 +103,7 @@ public class ObjectivesAddTask {
 		
 		if(objectives.getObjectiveStartDateText().isDisplayed()
 				&&objectives.getObjectiveDueDateText().isDisplayed()&&objectives.getObjectiveTaskTypeText().isDisplayed()
-				&&objectives.getObjectivePriorityLevelText().isDisplayed()&&objectives.getObjectiveStatusText().isDisplayed()&&objectives.getObjectiveCompletedDateText().isDisplayed()&&objectives.getObjectiveDescriptionText().isDisplayed()) {
+				&&objectives.getObjectivePriorityLevelText().isDisplayed()&&objectives.getObjectiveStatusText().isDisplayed()&&objectives.getObjectiveCompletedDateText().isDisplayed()) {
 			testcase1.add("Pass");
 		}
 		else {
@@ -110,9 +111,9 @@ public class ObjectivesAddTask {
 
 		}
 		
-		if(objectives.getObjectiveStartDateCalendar().isDisplayed()
-				&&objectives.getObjectiveDueDateCalendar().isDisplayed()&&objectives.getObjectiveTaskTypeDropDown().isDisplayed()
-				&&objectives.getObjectivePriorityLevelDropDown().isDisplayed()&&objectives.getObjectiveStatusDropDown().isDisplayed()&&objectives.getObjectiveCompletedDateDropDown().isDisplayed()&&objectives.getObjectiveDescriptionField().isDisplayed()) {
+		if(objectives.getObjectiveStartDateFieldText().isDisplayed()
+				&&objectives.getObjectiveDueDateFieldText().isDisplayed()&&objectives.getObjectiveTaskTypeDropDown().isDisplayed()
+				&&objectives.getObjectivePriorityLevelDropDown().isDisplayed()&&objectives.getObjectiveStatusDropDown().isDisplayed()&&objectives.getObjectiveCompletedDateDropDown().isDisplayed()) {
 			testcase1.add("Pass");
 		}
 		else {
@@ -261,7 +262,40 @@ public class ObjectivesAddTask {
 			testcase1.add("Fail");
 
 		}
-		
+		if(objectives.getObjectiveSelectValueFromStatusDropdown().isDisplayed()) {
+            
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		if(objectives.getObjectiveRemoveValueFromCompletedDateField().isEnabled()) {
+            
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		if(objectives.getObjectiveErrorValidationCompletionDate().isDisplayed()) {
+            
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		testcase1.add("Not Executed");
+		if(objectives.getObjectiveErrorValidationDescriptionField().isDisplayed()) {
+            
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+
 	    ExcelUtil.writeToFile(408, testcase1);		
 	}
 	
