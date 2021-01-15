@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.script.FindFailed;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -62,7 +63,7 @@ public class ObjectivesAddTask {
 	}
 	
 	@Test
-	public void verifyAddTaskPage() throws InterruptedException, IOException {
+	public void verifyAddTaskPage() throws InterruptedException, IOException, FindFailed {
 		homepage= new AllPlanningPage(driver);
 		loginpage= new SpolLoginPage(driver);
 		allPlanning= new AllPlanningPage(driver);
@@ -295,13 +296,21 @@ public class ObjectivesAddTask {
 			testcase1.add("Fail");
 
 		}
+		if(objectives.getObjectiveSaveAllInformation()==0) {
+            
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
 
 	    ExcelUtil.writeToFile(408, testcase1);		
 	}
 	
-	@AfterClass
-	public void afterSuite() {
-		driver.close();
-		driver.quit();
-	}
+//	@AfterClass
+//	public void afterSuite() {
+//		driver.close();
+//		driver.quit();
+//	}
 }

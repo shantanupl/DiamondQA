@@ -6,7 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
 
 public class ObjectivesTasks {
 	WebDriver driver;
@@ -305,19 +310,95 @@ public class ObjectivesTasks {
 		return driver.findElement(findCompletedDateValidationErrorMessage);
 	}
 
-	public WebElement getObjectiveErrorValidationDescriptionField() throws InterruptedException {
+	public WebElement getObjectiveErrorValidationDescriptionField() throws InterruptedException, FindFailed {
 		Thread.sleep(2000);
-		JavascriptExecutor jse2 = (JavascriptExecutor)driver;
-		WebElement ele2=driver.findElement(findDescriptionDropdown);
-		jse2.executeScript("arguments[0].value='Quotation';", ele2);
-		//driver.findElement(findDescriptionDropdown).sendKeys("Quotation");
+		WebElement userNameTxt = driver.findElement(findDescriptionDropdown);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", userNameTxt);
 		Thread.sleep(2000);
-		JavascriptExecutor jse3 = (JavascriptExecutor)driver;
-		WebElement ele3=driver.findElement(findDescriptionDropdown);
-		jse3.executeScript("arguments[0].value='Paragraph';", ele3);
-		//driver.findElement(findDescriptionDropdown).sendKeys("Paragraph");
+		Screen scrn=new Screen();
+		//Pattern pattern1=new Pattern(System.getProperty("user.dir")+"/src/resources/images/quotation.PNG");
+		//Pattern pattern1=new Pattern("D:\\Shantanu\\TestAutomation\\DiamondQA\\SpolAutomation\\src\\resources\\images\\quotation.jpg");
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\quotation.jpg");
+		scrn.click(pattern1);
+		Thread.sleep(2000);
+		js.executeScript("arguments[0].click();", userNameTxt);
+		//Pattern pattern2=new Pattern("D:\\Shantanu\\TestAutomation\\DiamondQA\\SpolAutomation\\src\\resources\\images\\paragraph.jpg");
+		Pattern pattern2=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\paragraph.jpg");
+		scrn.click(pattern2);
+		//By selectDropdownText=By.linkText("Quotation");
+		//driver.findElement(selectDropdownText).click();
+		//js.executeScript("arguments[0].value='Quotation';", userNameTxt);
+		//userNameTxt.click();
+		//JavascriptExecutor jsExecutor = (JavascriptExecutor) driver; 
+		// set the text
+		//jsExecutor.executeScript("arguments[0].value='Quotation'", userNameTxt); 
+//		JavascriptExecutor jse2 = (JavascriptExecutor)driver;
+//		WebElement ele2=driver.findElement(findDescriptionDropdown);
+//		jse2.executeScript("arguments[0].value='Quotation';", ele2);
+//		//driver.findElement(findDescriptionDropdown).sendKeys("Quotation");
+//		Thread.sleep(2000);
+//		JavascriptExecutor jse3 = (JavascriptExecutor)driver;
+//		WebElement ele3=driver.findElement(findDescriptionDropdown);
+//		jse3.executeScript("arguments[0].value='Paragraph';", ele3);
+//		//driver.findElement(findDescriptionDropdown).sendKeys("Paragraph");
 		Thread.sleep(2000);
 		return driver.findElement(findDescriptionRequiredMessage);
+	}
+
+	public int getObjectiveSaveAllInformation() throws InterruptedException, FindFailed {
+		//Start Date calendar
+		driver.findElement(findStartDateFieldCalendar).click();
+		List<WebElement> webele1=driver.findElements(findSelectDateFromDueDateCalendar);
+		webele1.get(0).click();
+		Thread.sleep(2000);
+		//Due Date calendar
+		driver.findElement(findDueDateFieldCalendar).click();
+		List<WebElement> webele=driver.findElements(findSelectDateFromDueDateCalendar);
+		webele.get(10).click();
+		Thread.sleep(2000);
+		//Select Task Type
+		driver.findElement(findTaskTypeField).clear();
+		driver.findElement(findTaskTypeField).sendKeys("TaskType1");
+		Thread.sleep(2000);
+		//Select Priority Level
+		driver.findElement(findPriorityLevelField).clear();
+		driver.findElement(findPriorityLevelField).sendKeys("PriorityLevel1");
+		Thread.sleep(2000);
+		//Select Status
+		driver.findElement(findStatusField).clear();
+		driver.findElement(findStatusField).sendKeys("Pending");
+		Thread.sleep(2000);
+		//Select Completed Date
+		driver.findElement(findCompletedDateFieldCalendar).click();
+		List<WebElement> webele3=driver.findElements(findSelectDateFromDueDateCalendar);
+		webele3.get(12).click();
+		Thread.sleep(2000);
+		//Completed Date calendar
+		driver.findElement(findCompletedDateFieldCalendar).click();
+		List<WebElement> webele2=driver.findElements(findSelectDateFromDueDateCalendar);
+		webele2.get(8).click();
+		Thread.sleep(2000);
+		//Description field
+		WebElement userNameTxt = driver.findElement(findDescriptionDropdown);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", userNameTxt);
+		Thread.sleep(2000);
+		Screen scrn=new Screen();
+		//Pattern pattern1=new Pattern("D:\\Shantanu\\TestAutomation\\DiamondQA\\SpolAutomation\\src\\resources\\images\\quotation.jpg");
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\quotation.jpg");
+		scrn.click(pattern1);
+		Thread.sleep(2000);
+		//Scroll window
+		WebElement scrollElemt = driver.findElement(findSaveButton);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", scrollElemt);
+		Thread.sleep(500);
+		//Click Save button
+		driver.findElement(findSaveButton).click();
+		Thread.sleep(2000);
+		//WebDriverWait wait1 = new WebDriverWait(driver,100);
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'AFavUnitA986')]")));
+		return 0;
 	}
 	
 }
