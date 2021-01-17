@@ -296,7 +296,69 @@ public class ObjectivesAddTask {
 			testcase1.add("Fail");
 
 		}
-		if(objectives.getObjectiveSaveAllInformation()==0) {
+		if(objectives.getObjectiveSaveAllInformation().isDisplayed()) {
+            
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		if(objectives.getObjectiveStartDateTaskDetails().isDisplayed()
+				&&objectives.getObjectiveDueDateTaskDetails().isDisplayed()&&objectives.getObjectiveTaskTypeTaskDetails().isDisplayed()
+				&&objectives.getObjectivePriorityTaskDetails().isDisplayed()&&objectives.getObjectiveStatusTaskDetails().isDisplayed()&&objectives.getObjectiveBudgetRequestTaskDetails().isDisplayed()&&objectives.getObjectiveApprovedTaskDetails().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		if(objectives.getObjectiveHeaderStatusDateTaskDetails().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		if(objectives.getObjectiveStartDateFieldTaskDetails().isDisplayed()
+				&&objectives.getObjectiveDueDateFieldTaskDetails().isDisplayed()&&objectives.getObjectiveTaskTypeFieldTaskDetails().isDisplayed()
+				&&objectives.getObjectivePriorityFieldTaskDetails().isDisplayed()&&objectives.getObjectiveStatusFieldTaskDetails().isDisplayed()&&objectives.getObjectiveBudgetRequestFieldTaskDetails().isDisplayed()&&objectives.getObjectiveApprovedFieldTaskDetails().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		if(objectives.getObjectiveBudgetRequestFieldTaskDetails().isDisplayed()&&objectives.getObjectiveApprovedFieldTaskDetails().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		
+		if(objectives.getObjectiveStartDateTaskDetails().isDisplayed()
+				&&objectives.getObjectiveDueDateTaskDetails().isDisplayed()&&objectives.getObjectiveTaskTypeTaskDetails().isDisplayed()
+				&&objectives.getObjectivePriorityTaskDetails().isDisplayed()&&objectives.getObjectiveStatusTaskDetails().isDisplayed()&&objectives.getObjectiveBudgetRequestTaskDetails().isDisplayed()&&objectives.getObjectiveApprovedTaskDetails().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		if(objectives.getObjectiveStartDateFieldTaskDetails().isDisplayed()
+				&&objectives.getObjectiveDueDateFieldTaskDetails().isDisplayed()&&objectives.getObjectiveTaskTypeFieldTaskDetails().isDisplayed()
+				&&objectives.getObjectivePriorityFieldTaskDetails().isDisplayed()&&objectives.getObjectiveStatusFieldTaskDetails().isDisplayed()&&objectives.getObjectiveBudgetRequestFieldTaskDetails().isDisplayed()&&objectives.getObjectiveApprovedFieldTaskDetails().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+
+		}
+		//Task order
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;
+		js1.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("i.fal.fa-plus.selected")));
+		if(objectives.getObjectiveSaveAllInformation().isDisplayed()) {
             
 			testcase1.add("Pass");
 		}
@@ -308,9 +370,9 @@ public class ObjectivesAddTask {
 	    ExcelUtil.writeToFile(408, testcase1);		
 	}
 	
-//	@AfterClass
-//	public void afterSuite() {
-//		driver.close();
-//		driver.quit();
-//	}
+	@AfterClass
+	public void afterSuite() {
+		driver.close();
+		driver.quit();
+	}
 }

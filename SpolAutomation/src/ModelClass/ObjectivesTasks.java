@@ -52,7 +52,23 @@ public class ObjectivesTasks {
 	By findPriorityLevelRequiredMessage=By.xpath("//span[contains(text(),' Priority Level is required ')]");
 	By findStatusRequiredMessage=By.xpath("//span[contains(text(),' Task Status is required ')]");
 	By findCompletedDateValidationErrorMessage=By.xpath("//span[contains(text(), 'Start Date must be before the Completed Date.')]");
-	  
+	By findHamburgerMenu=By.cssSelector("i.fas.fa-bars.fa-1x");
+	By findStartDateTaskDetail=By.xpath("//div[contains(text(),' Start Date ')]");
+	By findDueDateTaskDetail=By.xpath("//div[contains(text(),' Due Date ')]");
+	By findTypeTaskDetail=By.xpath("//div[contains(text(),'Type')]");
+	By findPriorityTaskDetail=By.xpath("//div[contains(text(),'Priority')]");
+	By findStatusTaskDetail=By.xpath("//div[contains(text(),'Status')]");
+	By findBudgetRequestTaskDetail=By.xpath("//div[contains(text(),'Budget Request')]");
+	By findApprovedTaskDetail=By.xpath("//div[contains(text(),'Approved')]");
+	By findStartDateFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[1]");
+	By findDueDateFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[4]");
+	By findTypeFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[7]");
+	By findPriorityFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[10]");
+	By findStatusFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[13]");
+	By findBudgetRequestFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[16]");
+	By findApprovedFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[19]");
+	By findHeaderStatusDateTaskDetail=By.cssSelector("div.task-completion-status");
+	
 	public WebElement isTasksRowPlusButtonVisible() {
 		return driver.findElement(tasksRowPlusButton);
 	}
@@ -346,7 +362,7 @@ public class ObjectivesTasks {
 		return driver.findElement(findDescriptionRequiredMessage);
 	}
 
-	public int getObjectiveSaveAllInformation() throws InterruptedException, FindFailed {
+	public WebElement getObjectiveSaveAllInformation() throws InterruptedException, FindFailed {
 		//Start Date calendar
 		driver.findElement(findStartDateFieldCalendar).click();
 		List<WebElement> webele1=driver.findElements(findSelectDateFromDueDateCalendar);
@@ -396,9 +412,69 @@ public class ObjectivesTasks {
 		//Click Save button
 		driver.findElement(findSaveButton).click();
 		Thread.sleep(2000);
-		//WebDriverWait wait1 = new WebDriverWait(driver,100);
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'AFavUnitA986')]")));
-		return 0;
+		WebDriverWait wait1 = new WebDriverWait(driver,100);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(findHamburgerMenu));
+		return driver.findElement(findHamburgerMenu);
+	}
+
+	public WebElement getObjectiveStartDateTaskDetails() {
+		return driver.findElement(findStartDateTaskDetail);
+	}
+
+	public WebElement getObjectiveDueDateTaskDetails() {
+		return driver.findElement(findDueDateTaskDetail);
+	}
+
+	public WebElement getObjectiveTaskTypeTaskDetails() {
+		return driver.findElement(findTypeTaskDetail);
+	}
+
+	public WebElement getObjectivePriorityTaskDetails() {
+		return driver.findElement(findPriorityTaskDetail);
+	}
+
+	public WebElement getObjectiveStatusTaskDetails() {
+		return driver.findElement(findStatusTaskDetail);
+	}
+
+	public WebElement getObjectiveBudgetRequestTaskDetails() {
+		return driver.findElement(findBudgetRequestTaskDetail);
+	}
+
+	public WebElement getObjectiveApprovedTaskDetails() {
+		return driver.findElement(findApprovedTaskDetail);
+	}
+
+	public WebElement getObjectiveHeaderStatusDateTaskDetails() {
+		return driver.findElement(findHeaderStatusDateTaskDetail);
+	}
+
+	public WebElement getObjectiveStartDateFieldTaskDetails() {
+		return driver.findElement(findStartDateFieldTaskDetail);
+	}
+
+	public WebElement getObjectiveDueDateFieldTaskDetails() {
+		return driver.findElement(findDueDateFieldTaskDetail);
+	}
+
+	public WebElement getObjectiveTaskTypeFieldTaskDetails() {
+		return driver.findElement(findTypeFieldTaskDetail);
+	}
+
+	public WebElement getObjectivePriorityFieldTaskDetails() {
+		return driver.findElement(findPriorityFieldTaskDetail);
+	}
+
+	public WebElement getObjectiveStatusFieldTaskDetails() {
+		return driver.findElement(findStatusFieldTaskDetail);
+	}
+
+	public WebElement getObjectiveBudgetRequestFieldTaskDetails() {
+		return driver.findElement(findBudgetRequestFieldTaskDetail);
+	}
+
+	public WebElement getObjectiveApprovedFieldTaskDetails() {
+		return driver.findElement(findApprovedFieldTaskDetail);
 	}
 	
 }
