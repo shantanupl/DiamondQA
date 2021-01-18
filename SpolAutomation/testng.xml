@@ -3,38 +3,52 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-     <!--  <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveApprovalAndNote"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_SWOT"/> -->
-     <!--  <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfoEDITGoalsTypesPriorities"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_PlanningPriorities"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.RemoveAllApproval"/>
-      
-      <class name="PlanningUnitINFO.PlanningUnitFavorite"/>
-      <class name="PlanningUnitINFO.ViewPageAfterSave"/>
-      <class name="PlanningUnitINFO.InfoPageEdit"/>
-      <class name="PlanningUnitINFO.InfoPageEditMembers"/>
-      <class name="PlanningUnitINFO.NewPlanningUnitAdd"/>
-      <class name="PlanningUnitINFO.PlanningUnitDeleteDeactivateEdit"/>
-      <class name="PlanningUnitINFO.InitialViewPage"/> 
-      
-      <class name="PlanningUnitDetailsOBJECTIVES.ViewApprovalHistory"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveEdit"/>
-      <class name="PlanningUnitDetailsGoals.GoalsAddSWOT"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfoGoalsTypesPriorities"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_EditObjectiveType"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveFavorite"/>
-      <class name="PlanningUnitDetailsGoals.GoalsEdit"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectivesViewDetails_INFO_tab"/>
-      <class name="PlanningUnitDetailsGoals.GoalsAdd"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_ObjectiveType"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectivesAddNew"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveEditInstitutionalGoals"/>
-      <class name="PlanningUnitDetailsGoals.GoalsDetails"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.CreateNewObjectives"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_EditPlanningPriorities"/>
-      <class name="PlanningUnitDetailsGoals.GoalsView"/>
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectivesView"/> -->
-      <class name="PlanningUnitDetailsOBJECTIVES.ObjectivesAddTask"/>
+    <!--PlanningUnitINFO-->
+    
+	    <class name="PlanningUnitINFO.InitialViewPage"/> 
+	    <class name="PlanningUnitINFO.NewPlanningUnitAdd"/>
+	    <class name="PlanningUnitINFO.ViewPageAfterSave"/>
+	    <class name="PlanningUnitINFO.InfoPageEdit"/>
+	    <class name="PlanningUnitINFO.InfoPageEditMembers"/>
+	    <class name="PlanningUnitINFO.PlanningUnitDeleteDeactivateEdit"/>
+	    <class name="PlanningUnitINFO.PlanningUnitFavorite"/>
+    
+    <!--PlanningUnitINFO-->
+    
+    <!--PlanningUnitDetailsGoals-->
+	    <class name="PlanningUnitDetailsGoals.GoalsView"/>
+	    <class name="PlanningUnitDetailsGoals.GoalsAdd"/>
+	    <class name="PlanningUnitDetailsGoals.GoalsDetails"/>
+	    <class name="PlanningUnitDetailsGoals.GoalsEdit"/>
+	    <class name="PlanningUnitDetailsGoals.GoalsAddSWOT"/>
+        
+    <!--PlanningUnitDetailsGoals-->
+    
+     <!--PlanningUnitDetailsOBJECTIVES-->
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectivesView"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectivesAddNew"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.CreateNewObjectives"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectivesViewDetails_INFO_tab"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveApprovalAndNote"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ViewApprovalHistory"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.RemoveAllApproval"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveEdit"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveFavorite"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInstitutionalGoals"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveEditInstitutionalGoals"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfoGoalsTypesPriorities"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfoEDITGoalsTypesPriorities"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_ObjectiveType"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_EditObjectiveType"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_PlanningPriorities"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_EditPlanningPriorities"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectiveInfo_SWOT"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectivesTaskView"/>
+     	<class name="PlanningUnitDetailsOBJECTIVES.ObjectivesAddTask"/>
+     	
+     <!--PlanningUnitDetailsOBJECTIVES-->
+     
+    
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
