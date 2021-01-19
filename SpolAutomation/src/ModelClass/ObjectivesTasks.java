@@ -68,7 +68,9 @@ public class ObjectivesTasks {
 	By findBudgetRequestFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[16]");
 	By findApprovedFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[19]");
 	By findHeaderStatusDateTaskDetail=By.cssSelector("div.task-completion-status");
-	
+	By findTaskDetailsLink=By.xpath("//a[contains(text(),'Task Details')]");
+	By findRemarksLink=By.xpath("//a[contains(text(),'Remarks')]");
+	By findAssignmentsLink=By.xpath("//a[contains(text(),'Assignments')]");
 	public WebElement isTasksRowPlusButtonVisible() {
 		return driver.findElement(tasksRowPlusButton);
 	}
@@ -475,6 +477,61 @@ public class ObjectivesTasks {
 
 	public WebElement getObjectiveApprovedFieldTaskDetails() {
 		return driver.findElement(findApprovedFieldTaskDetail);
+	}
+
+	public WebElement getObjectiveTaskDetailsLink() {
+		return driver.findElement(findTaskDetailsLink);
+	}
+
+	public WebElement getObjectiveRemarksLink() {
+		return driver.findElement(findRemarksLink);
+	}
+
+	public WebElement getObjectiveAssignmentsLink() {
+		return driver.findElement(findAssignmentsLink);
+	}
+
+	public WebElement getObjectiveTaskDetailPageHeaderText() {
+		return driver.findElement(taskAddSectionHeaderText);
+	}
+
+//	public WebElement getObjectiveStatusDropDownValueEdited() throws InterruptedException {
+//		Thread.sleep(2000);
+//		//Select Status
+//		driver.findElement(findStatusField).clear();
+//		driver.findElement(findStatusField).sendKeys("In Progress");
+//		return driver.findElement(findStatusField);
+//	}
+//
+//	public WebElement getObjectiveCompletedDateDropDownValueEdited() throws InterruptedException {
+//		//Select Completed Date
+//		driver.findElement(findCompletedDateFieldCalendar).click();
+//		List<WebElement> webele3=driver.findElements(findSelectDateFromDueDateCalendar);
+//		webele3.get(13).click();
+//		Thread.sleep(2000);
+//		return webele3.get(13);
+//	}
+
+	public WebElement getObjectiveEditStatusAndCompletedDate() throws InterruptedException {
+		Thread.sleep(2000);
+		//Select Status
+		driver.findElement(findStatusField).clear();
+		driver.findElement(findStatusField).sendKeys("In Progress");
+		//Select Completed Date
+		driver.findElement(findCompletedDateFieldCalendar).click();
+		List<WebElement> webele3=driver.findElements(findSelectDateFromDueDateCalendar);
+		webele3.get(13).click();
+		Thread.sleep(2000);
+		//Scroll window
+		WebElement scrollElemt = driver.findElement(findSaveButton);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", scrollElemt);
+		Thread.sleep(500);
+		//Click Save button
+		driver.findElement(findSaveButton).click();
+		Thread.sleep(2000);
+		WebDriverWait wait1 = new WebDriverWait(driver,100);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(findHamburgerMenu));
+		return driver.findElement(findHamburgerMenu);
 	}
 	
 }
