@@ -2,6 +2,7 @@ package PlanningUnitDetailsOBJECTIVES;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -11,6 +12,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sikuli.script.FindFailed;
@@ -100,7 +102,7 @@ public class ObjectivesEditTask {
         element.click();
         Thread.sleep(2000);
 		if(objectives.getObjectiveTaskDetailsLink().isDisplayed()
-				&&objectives.getObjectiveRemarksLink().isDisplayed()&&objectives.getObjectiveAssignmentsLink().isDisplayed()) {
+				&&objectives.getObjectiveRemarksLink().isDisplayed()&&objectives.getObjectiveBudgetLink().isDisplayed()&&objectives.getObjectiveAssignmentsLink().isDisplayed()) {
 			testcase1.add("Pass");
 		}
 		else {
@@ -129,7 +131,50 @@ public class ObjectivesEditTask {
 		}
 		else {
 			testcase1.add("Fail");
-
+		}
+		
+		if(objectives.getObjectiveClickRemarks().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectivePlusIconShow().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveClickPlusIconNewPopUpShow().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveSaveButtonEnabled().isEnabled()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveNewRemarksAdded().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		
+		if(objectives.getObjectiveDateTextRemarks().isDisplayed()&&objectives.getObjectiveEnteredByTextRemarks().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveRemarksClickCloseButton().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
 		}
         
 	    ExcelUtil.writeToFile(441, testcase1);		

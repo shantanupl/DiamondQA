@@ -69,8 +69,17 @@ public class ObjectivesTasks {
 	By findApprovedFieldTaskDetail=By.xpath("//div[contains(@spol-label,'otlStartDate')]//following::div[19]");
 	By findHeaderStatusDateTaskDetail=By.cssSelector("div.task-completion-status");
 	By findTaskDetailsLink=By.xpath("//a[contains(text(),'Task Details')]");
+	By findBudgetLink=By.xpath("//a[contains(text(),'Budget')]");
 	By findRemarksLink=By.xpath("//a[contains(text(),'Remarks')]");
+	By findRemarksPageHeaderTitle=By.xpath("//label[contains(text(),'Remarks')]");
 	By findAssignmentsLink=By.xpath("//a[contains(text(),'Assignments')]");
+	By findRemarksPlusIcon=By.cssSelector("i.fal.fa-plus.add-remark");
+	By findRemarksTitle=By.xpath("//div[contains(text(),'Remark')]");
+	By findRemarksSaveButton=By.xpath("//button[contains(text(),'Save')]");
+	By findDateTextRemarksSection=By.xpath("//div[contains(text(),'Date:')]");
+	By findEnteredByTextRemarksSection=By.xpath("//div[contains(text(),'Entered By:')]");
+	By findCloseButtonRemarksPage=By.xpath("//button[contains(@class,'close')]");
+	
 	public WebElement isTasksRowPlusButtonVisible() {
 		return driver.findElement(tasksRowPlusButton);
 	}
@@ -486,6 +495,9 @@ public class ObjectivesTasks {
 	public WebElement getObjectiveRemarksLink() {
 		return driver.findElement(findRemarksLink);
 	}
+	public WebElement getObjectiveBudgetLink() {
+		return driver.findElement(findBudgetLink);
+	}
 
 	public WebElement getObjectiveAssignmentsLink() {
 		return driver.findElement(findAssignmentsLink);
@@ -533,5 +545,61 @@ public class ObjectivesTasks {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(findHamburgerMenu));
 		return driver.findElement(findHamburgerMenu);
 	}
+
+	public WebElement getObjectiveClickRemarks() throws InterruptedException {
+		driver.findElement(findHamburgerMenu).click();
+		Thread.sleep(2000);
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		driver.findElement(findRemarksLink).click();
+		return driver.findElement(findRemarksPageHeaderTitle);
+	}
+
+	public WebElement getObjectivePlusIconShow() {
+		return driver.findElement(findRemarksPlusIcon);
+	}
+
+	public WebElement getObjectiveClickPlusIconNewPopUpShow() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findRemarksPlusIcon).click();
+		return driver.findElement(findRemarksTitle);
+	}
+
+	public WebElement getObjectiveSaveButtonEnabled() throws InterruptedException, FindFailed {
+		Thread.sleep(2000);
+		//Description field
+		WebElement userNameTxt = driver.findElement(findDescriptionDropdown);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", userNameTxt);
+		Thread.sleep(2000);
+		Screen scrn=new Screen();
+		//Pattern pattern1=new Pattern("D:\\Shantanu\\TestAutomation\\DiamondQA\\SpolAutomation\\src\\resources\\images\\quotation.jpg");
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\quotation.jpg");
+		scrn.click(pattern1);
+		Thread.sleep(2000);
+
+		return driver.findElement(findRemarksSaveButton);
+	}
+
+	public WebElement getObjectiveNewRemarksAdded() throws InterruptedException {
+		driver.findElement(findRemarksSaveButton).click();
+		Thread.sleep(2000);
+		return driver.findElement(findDateTextRemarksSection);
+	}
+
+	public WebElement getObjectiveDateTextRemarks() {
+		return driver.findElement(findDateTextRemarksSection);
+	}
+
+	public WebElement getObjectiveEnteredByTextRemarks() {
+		return driver.findElement(findEnteredByTextRemarksSection);
+	}
+
+	public WebElement getObjectiveRemarksClickCloseButton() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findCloseButtonRemarksPage).click();
+		return driver.findElement(findHamburgerMenu);
+	}
+	
 	
 }
