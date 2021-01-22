@@ -31,7 +31,7 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-public class ObjectivesEditTask {
+public class ObjectivesRemarks {
 	WebDriver driver;
 	AllPlanningPage homepage;
 	SpolLoginPage loginpage;
@@ -51,7 +51,7 @@ public class ObjectivesEditTask {
 	//public Workbook workbookcopy1;
 	public ArrayList<String> testcase1 = new ArrayList<String>();
 	
-	public ObjectivesEditTask() {
+	public ObjectivesRemarks() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -101,39 +101,88 @@ public class ObjectivesEditTask {
         WebElement element=objectives.getObjectiveSaveAllInformation();
         element.click();
         Thread.sleep(2000);
-		if(objectives.getObjectiveTaskDetailsLink().isDisplayed()
-				&&objectives.getObjectiveRemarksLink().isDisplayed()&&objectives.getObjectiveBudgetLink().isDisplayed()&&objectives.getObjectiveAssignmentsLink().isDisplayed()) {
+		//Remarks Start
+		if(objectives.getObjectiveClickRemarks().isDisplayed()) {
 			testcase1.add("Pass");
 		}
 		else {
 			testcase1.add("Fail");
-
 		}
-		if(objectives.getObjectiveTaskDetailPageHeaderText().isDisplayed()) {
+		if(objectives.getObjectivePlusIconShow().isDisplayed()) {
 			testcase1.add("Pass");
 		}
 		else {
 			testcase1.add("Fail");
-
 		}
-		if(objectives.getObjectiveStartDateFieldText().isDisplayed()
-				&&objectives.getObjectiveDueDateFieldText().isDisplayed()&&objectives.getObjectiveTaskTypeDropDown().isDisplayed()
-				&&objectives.getObjectivePriorityLevelDropDown().isDisplayed()&&objectives.getObjectiveStatusDropDown().isDisplayed()&&objectives.getObjectiveCompletedDateDropDown().isDisplayed()) {
+		if(objectives.getObjectiveClickPlusIconNewPopUpShow().isDisplayed()) {
 			testcase1.add("Pass");
 		}
 		else {
 			testcase1.add("Fail");
-
+		}
+		if(objectives.getObjectiveSaveButtonEnabled().isEnabled()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveNewRemarksAdded().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
 		}
 		
-		if(objectives.getObjectiveEditStatusAndCompletedDate().isDisplayed()) {
+		if(objectives.getObjectiveDateTextRemarks().isDisplayed()&&objectives.getObjectiveEnteredByTextRemarks().isDisplayed()) {
 			testcase1.add("Pass");
 		}
 		else {
 			testcase1.add("Fail");
 		}
-		
-	    ExcelUtil.writeToFile(441, testcase1);		
+		if(objectives.getObjectiveRemarksClickCloseButton().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveRemarksBlueIcon().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveRemarksEditForm().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveRemarksEditSave().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveRemarksDeleteButtonVisible().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveClickRemarksDeleteButton().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+		if(objectives.getObjectiveDeleteRemarks().isDisplayed()) {
+			testcase1.add("Pass");
+		}
+		else {
+			testcase1.add("Fail");
+		}
+        
+	    ExcelUtil.writeToFile(445, testcase1);		
 	}
 	
 	

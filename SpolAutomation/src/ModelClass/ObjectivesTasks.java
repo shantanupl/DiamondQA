@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -79,6 +80,12 @@ public class ObjectivesTasks {
 	By findDateTextRemarksSection=By.xpath("//div[contains(text(),'Date:')]");
 	By findEnteredByTextRemarksSection=By.xpath("//div[contains(text(),'Entered By:')]");
 	By findCloseButtonRemarksPage=By.xpath("//button[contains(@class,'close')]");
+	By findRemarksEdit=By.cssSelector("div.table-row:nth-of-type(2)");
+	By findRemarksDeleteButton=By.cssSelector("div.delete-icon.hide.far.fa-trash-alt.float-right.ng-star-inserted");
+	By findRemarksDeletePopupHeader=By.cssSelector("div.col-12");
+	By findRemarksDeletePopupDeleteButton=By.cssSelector("button.btn.btn-yellow.btn-system.ng-star-inserted");
+	By findRemarksNoRecords=By.cssSelector("div.table-cell span:nth-of-type(1)");
+	By findRemarksEditCalendar=By.cssSelector("span.k-icon.k-i-calendar");
 	
 	public WebElement isTasksRowPlusButtonVisible() {
 		return driver.findElement(tasksRowPlusButton);
@@ -555,7 +562,8 @@ public class ObjectivesTasks {
 		return driver.findElement(findRemarksPageHeaderTitle);
 	}
 
-	public WebElement getObjectivePlusIconShow() {
+	public WebElement getObjectivePlusIconShow() throws InterruptedException {
+		Thread.sleep(3000);
 		return driver.findElement(findRemarksPlusIcon);
 	}
 
@@ -599,6 +607,61 @@ public class ObjectivesTasks {
 		Thread.sleep(2000);
 		driver.findElement(findCloseButtonRemarksPage).click();
 		return driver.findElement(findHamburgerMenu);
+	}
+
+	public WebElement getObjectiveRemarksBlueIcon() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findHamburgerMenu).click();
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		driver.findElement(findRemarksLink).click();
+		return driver.findElement(findRemarksPlusIcon);
+	}
+
+	public WebElement getObjectiveRemarksEditForm() throws InterruptedException, FindFailed {
+		Thread.sleep(2000);
+		driver.findElement(findRemarksEdit).click();
+		return driver.findElement(findRemarksTitle);
+	}
+
+	public WebElement getObjectiveRemarksEditSave() throws InterruptedException, FindFailed {
+		Thread.sleep(2000);
+		driver.findElement(findRemarksEditCalendar).click();
+		List<WebElement> webele3=driver.findElements(findSelectDateFromDueDateCalendar);
+		webele3.get(15).click();
+		Thread.sleep(2000);
+		//Description field
+		WebElement userNameTxt = driver.findElement(findDescriptionDropdown);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", userNameTxt);
+		Thread.sleep(2000);
+		Screen scrn=new Screen();
+		//Pattern pattern1=new Pattern("D:\\Shantanu\\TestAutomation\\DiamondQA\\SpolAutomation\\src\\resources\\images\\quotation.jpg");
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\quotation.jpg");
+		scrn.click(pattern1);
+		driver.findElement(findRemarksSaveButton).click();
+		Thread.sleep(2000);
+		return driver.findElement(findHamburgerMenu);
+	}
+
+	public WebElement getObjectiveRemarksDeleteButtonVisible() throws InterruptedException {
+		Thread.sleep(2000);
+		Actions action = new Actions(driver);
+		WebElement btn = driver.findElement(findRemarksEdit);
+		action.moveToElement(btn).perform();
+		Thread.sleep(2000);
+		return driver.findElement(findRemarksDeleteButton);
+	}
+
+	public WebElement getObjectiveClickRemarksDeleteButton() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findRemarksDeleteButton).click();
+		return driver.findElement(findRemarksDeletePopupHeader);
+	}
+
+	public WebElement getObjectiveDeleteRemarks() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findRemarksDeletePopupDeleteButton).click();
+		return driver.findElement(findRemarksNoRecords);
 	}
 	
 	
