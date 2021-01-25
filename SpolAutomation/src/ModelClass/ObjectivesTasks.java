@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -74,7 +75,25 @@ public class ObjectivesTasks {
 	By findRemarksLink=By.xpath("//a[contains(text(),'Remarks')]");
 	By findRemarksPageHeaderTitle=By.xpath("//label[contains(text(),'Remarks')]");
 	By findAssignmentsLink=By.xpath("//a[contains(text(),'Assignments')]");
+	By findAssignmentsPageHeaderTitle=By.xpath("//label[contains(text(),'Assignments')]");
 	By findRemarksPlusIcon=By.cssSelector("i.fal.fa-plus.add-remark");
+	By findAssignmentNewFormHeaderTitle=By.xpath("//div[contains(text(),'New Task Assignment')]");
+	By findAssignmentFilterByDropdown=By.cssSelector("span.k-icon.k-i-arrow-s");
+	By findAssignmentsUserSearchField=By.xpath("//*[@id='main-wrapper']/div[1]/div/app-objective/merge-com/div/div[2]/app-obj-task-detail/div/div[2]/app-obj-task-assignment-form/kendo-dialog/div[2]/div/div/div[2]/div/div/kendo-grid/div/div/div/table/thead/tr[2]/td[2]/kendo-grid-string-filter-cell/kendo-grid-filter-wrapper-cell/input");
+	By findAssignmentsEmailSearchField=By.xpath("//*[@id='main-wrapper']/div[1]/div/app-objective/merge-com/div/div[2]/app-obj-task-detail/div/div[2]/app-obj-task-assignment-form/kendo-dialog/div[2]/div/div/div[2]/div/div/kendo-grid/div/div/div/table/thead/tr[2]/td[3]/kendo-grid-string-filter-cell/kendo-grid-filter-wrapper-cell/input");
+	By findAssignmentUserNumberSelection=By.cssSelector("input.k-checkbox.ng-star-inserted");
+	By findAssignmentCheckBox=By.xpath("//td[contains(@class,'ng-star-inserted')]//following::input[6]");
+	By findAssignmentCheckBoxSelected=By.cssSelector("input.k-checkbox.ng-star-inserted");
+	By findAssignmentSaveButton=By.cssSelector("button.btn.btn-yellow");
+	By findAssignmentCancelButton=By.cssSelector("button.btn.btn-light");
+	By findAssignmentAddedAdmin=By.cssSelector("td.ng-star-inserted:first-of-type");
+	By findAssignmentFirstNameDropDown=By.xpath("//input[contains(@formcontrolname,'firstName')]");
+	By findAssignmentLastNameDropDown=By.xpath("//input[contains(@formcontrolname,'lastName')]");
+	By findAssignmentEmailDropDown=By.xpath("//input[contains(@formcontrolname,'email')]");
+	By findAssignmentFirstNameRequiredErrorMessage=By.xpath("//span[contains(text(),'Please Enter the First Name')]");
+	By findAssignmentPlusButtonDisabled=By.cssSelector("button.k-button.k-state-disabled");
+	By findAssignmentPlusButtonEnabled=By.xpath("//button[contains(@class,'k-button')][contains(@aria-disabled,'false')]");
+	By findAssignmentFirstNameText=By.xpath("//label[contains(@spol-label,'lableFirstName')]");
 	By findRemarksTitle=By.xpath("//div[contains(text(),'Remark')]");
 	By findRemarksSaveButton=By.xpath("//button[contains(text(),'Save')]");
 	By findDateTextRemarksSection=By.xpath("//div[contains(text(),'Date:')]");
@@ -663,6 +682,170 @@ public class ObjectivesTasks {
 		driver.findElement(findRemarksDeletePopupDeleteButton).click();
 		return driver.findElement(findRemarksNoRecords);
 	}
+
+	public WebElement getObjectiveClickAssignmentsLink() throws InterruptedException {
+		driver.findElement(findHamburgerMenu).click();
+		Thread.sleep(2000);
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		driver.findElement(findAssignmentsLink).click();
+		return driver.findElement(findRemarksPlusIcon);
+	}
+
+	public WebElement getObjectiveClickPlusIconNewPopupDisplay() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findRemarksPlusIcon).click();
+		Thread.sleep(5000);
+		return driver.findElement(findAssignmentNewFormHeaderTitle);
+	}
+	public WebElement getObjectiveFilterByDropdownDisplayByDefault() throws InterruptedException {
+		Thread.sleep(2000);
+		return driver.findElement(findAssignmentFilterByDropdown);
+	}
+
+	public List<WebElement> getObjectiveNumberOfUserDisplaySinglePage() throws InterruptedException {
+		Thread.sleep(2000);
+		List<WebElement> lists=driver.findElements(findAssignmentUserNumberSelection);
+		return lists;
+	}
+
+	public List<WebElement> getObjectiveUserSearchFilter() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentsUserSearchField).sendKeys("Admin");
+		List<WebElement> lists=driver.findElements(findAssignmentUserNumberSelection);
+		return lists;
+	}
+
+	public List<WebElement> getObjectiveEmailSearchFilter() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentsEmailSearchField).sendKeys("support@spol.com");
+		List<WebElement> lists=driver.findElements(findAssignmentUserNumberSelection);
+		return lists;
+	}
+
+	public List<WebElement> getObjectiveAssignmentsCheckBoxSelection() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentCancelButton).click();
+		Thread.sleep(2000);
+		driver.findElement(findRemarksPlusIcon).click();
+		Thread.sleep(5000);
+		List<WebElement> lists=driver.findElements(findAssignmentCheckBox);
+		lists.get(0).click();
+		Thread.sleep(2000);
+		List<WebElement> lists1=driver.findElements(findAssignmentCheckBoxSelected);
+		return lists1; 
+	}
+
+	public List<WebElement> getObjectiveAssignmentsSaveAllInfo() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentSaveButton).click();
+		Thread.sleep(5000);
+		List<WebElement> lists1=driver.findElements(findAssignmentAddedAdmin);
+		return lists1;
+	}
+
+	public List<WebElement> getObjectiveAssignmentsValueDisplay() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findRemarksPlusIcon).click();
+		Thread.sleep(5000);
+		List<WebElement> lists1=driver.findElements(findAssignmentCheckBoxSelected);
+		return lists1; 
+	}
 	
-	
+	public List<WebElement> getObjectiveUserAssignmentsValueDisplay() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentCancelButton).click();
+		Thread.sleep(2000);
+		driver.findElement(findRemarksPlusIcon).click();
+		Thread.sleep(5000);
+		List<WebElement> lists1=driver.findElements(findAssignmentCheckBoxSelected);
+		return lists1; 
+	}
+
+	public List<WebElement> getObjectiveAssignmentsPlaningUnitCheckBox() throws InterruptedException, FindFailed {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentCancelButton).click();
+		Thread.sleep(2000);
+		driver.findElement(findRemarksPlusIcon).click();
+		Thread.sleep(3000);
+		driver.findElement(findAssignmentFilterByDropdown).click();
+		Thread.sleep(3000);
+		Screen scrn=new Screen();
+		//Pattern pattern1=new Pattern("D:\\Shantanu\\TestAutomation\\DiamondQA\\SpolAutomation\\src\\resources\\images\\quotation.jpg");
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\plainingunit.jpg");
+		scrn.click(pattern1);
+		
+		//List<WebElement> lists=driver.findElements(findAssignmentCheckBox);
+		//lists.get(0).click();
+		Thread.sleep(2000);
+		List<WebElement> lists1=driver.findElements(findAssignmentCheckBoxSelected);
+		lists1.get(0).click();
+		return lists1; 
+	}
+
+	public List<WebElement> getObjectiveAssignmentsPlaningUnitSaveAllInfo() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentSaveButton).click();
+		return driver.findElements(findAssignmentAddedAdmin);
+	}
+
+	public WebElement getObjectiveAssignmentsExternalContributorsDropDownSelection() throws InterruptedException, FindFailed {
+		Thread.sleep(2000);
+		driver.findElement(findRemarksPlusIcon).click();
+		Thread.sleep(3000);
+		driver.findElement(findAssignmentFilterByDropdown).click();
+		Thread.sleep(3000);
+		Screen scrn=new Screen();
+		//Pattern pattern1=new Pattern("D:\\Shantanu\\TestAutomation\\DiamondQA\\SpolAutomation\\src\\resources\\images\\quotation.jpg");
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\externalcontributor.jpg");
+		scrn.click(pattern1);
+		Thread.sleep(3000);
+		return driver.findElement(findAssignmentEmailDropDown);
+	}
+
+	public WebElement getObjectiveAssignmentsExternalContributorDisabledPlusButton() {
+		return driver.findElement(findAssignmentPlusButtonDisabled);
+	}
+
+	public WebElement getObjectiveAssignmentsExternalContributorFirstNameRequiredErrorMessage() throws InterruptedException {
+		Thread.sleep(2000);
+		//driver.findElement(findAssignmentFirstNameDropDown).clear();
+		driver.findElement(findAssignmentFirstNameDropDown).click();
+		driver.findElement(findAssignmentLastNameDropDown).click();
+		//driver.findElement(findAssignmentFirstNameText).click();
+		Thread.sleep(2000);
+		return driver.findElement(findAssignmentFirstNameRequiredErrorMessage);
+	}
+
+	public WebElement getObjectiveAssignmentsExternalContributorThreeFieldFillupPlusIconEnabled() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentFirstNameDropDown).sendKeys("abc");
+		driver.findElement(findAssignmentLastNameDropDown).sendKeys("cdf");
+		driver.findElement(findAssignmentEmailDropDown).sendKeys("abc@gmail.com");
+		Thread.sleep(2000);
+		return driver.findElement(findAssignmentPlusButtonEnabled);
+	}
+
+	public List<WebElement> getObjectiveAssignmentsExternalContributorPlusIconSaveAllInfo() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentPlusButtonEnabled).click();
+		Thread.sleep(5000);
+		List<WebElement> lists1=driver.findElements(findAssignmentCheckBoxSelected);
+		return lists1;
+	}
+
+	public List<WebElement> getObjectiveAssignmentsExternalContributorCheckAnyCheckBox() throws InterruptedException {
+		Thread.sleep(5000);
+		List<WebElement> lists1=driver.findElements(findAssignmentCheckBoxSelected);
+		lists1.get(1).click();
+		return lists1;
+	}
+
+	public List<WebElement> getObjectiveAssignmentsExternalContributorSaveAllInfo() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findAssignmentSaveButton).click();
+		Thread.sleep(5000);
+		List<WebElement> lists1=driver.findElements(findAssignmentAddedAdmin);
+		return lists1;
+	}	
 }
