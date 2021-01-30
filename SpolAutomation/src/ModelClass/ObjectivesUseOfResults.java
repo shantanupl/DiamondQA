@@ -15,10 +15,10 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 
-public class ObjectivesResults {
+public class ObjectivesUseOfResults {
 	WebDriver driver;
 
-	public ObjectivesResults(WebDriver driver) {
+	public ObjectivesUseOfResults(WebDriver driver) {
 		this.driver=driver;
 	}
 	
@@ -69,7 +69,9 @@ public class ObjectivesResults {
 
 	public WebElement getObjectiveIntendedResultPageHeaderText() throws InterruptedException {
 		Thread.sleep(2000);
-		driver.findElement(findIntendedResultLink).click();
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		driver.findElement(findUseOfResultsLink).click();
 		Thread.sleep(2000);
 		//Scroll window
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
@@ -121,14 +123,16 @@ public class ObjectivesResults {
 		Thread.sleep(2000);
 		driver.findElement(findSaveButton).click();
 		Thread.sleep(2000);
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		List<WebElement> existingElement = driver.findElements(findExistingOrNoItem);
-		return existingElement.get(0);
+		return existingElement.get(4);
 	}
 
 	public WebElement getObjectiveEditIntendedResultsPage() throws InterruptedException {
 		Thread.sleep(2000);
 		List<WebElement> existingElement = driver.findElements(findExistingOrNoItem);
-		existingElement.get(0).click();
+		existingElement.get(4).click();
 		Thread.sleep(2000);
 		return driver.findElement(findResultPageHeaderText);
 	}
@@ -143,16 +147,18 @@ public class ObjectivesResults {
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		driver.findElement(findSaveButton).click();
 		Thread.sleep(2000);
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		List<WebElement> existingElement = driver.findElements(findExistingOrNoItem);
-		return existingElement.get(0);
+		return existingElement.get(4);
 	}
 
 	public WebElement getObjectiveIntendedResultsPageClickThreeDot() throws InterruptedException {
 		Thread.sleep(2000);
 		//Scroll window
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		List<WebElement> existingElement = driver.findElements(findExistingOrNoItem);
-		existingElement.get(0).click();
+		existingElement.get(4).click();
 		Thread.sleep(2000);
 		//Scroll window
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
@@ -160,6 +166,7 @@ public class ObjectivesResults {
 		Thread.sleep(2000);
 		return driver.findElement(findDeleteOption);
 	}
+
 	public WebElement getObjectiveIntendedResultsPageDeleteConfirmationPopup() throws InterruptedException {
 		Thread.sleep(2000);
 		driver.findElement(findDeleteOption).click();
@@ -171,19 +178,24 @@ public class ObjectivesResults {
 		Thread.sleep(2000);
 		driver.findElement(findDeleteButtonFromPopup).click();
 		Thread.sleep(5000);
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		List<WebElement> existingElement = driver.findElements(findExistingOrNoItem);
-		return existingElement.get(0);
+		return existingElement.get(4);
 	}
 
 	public WebElement getObjectiveIntendedResultsPageNoContentDisplayAfterDeletion() throws InterruptedException {
 		Thread.sleep(2000);
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		List<WebElement> existingElement = driver.findElements(findExistingOrNoItem);
-		return existingElement.get(0);
+		return existingElement.get(4);
 	}
-	
-	public void addIntendedResultData() throws InterruptedException, FindFailed {
+	public void addUseOfResultsData() throws InterruptedException, FindFailed {
 		Thread.sleep(2000);
-		driver.findElement(findIntendedResultLink).click();
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		driver.findElement(findUseOfResultsLink).click();
 		Thread.sleep(2000);
 		//Scroll window
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
@@ -198,12 +210,11 @@ public class ObjectivesResults {
 		driver.findElement(findSaveButton).click();
 		Thread.sleep(2000);
 	}
-	public void deleteIntendedResultsData() throws InterruptedException {
+	public void deleteUseOfResultsData() throws InterruptedException, FindFailed {
 		Thread.sleep(2000);
-		//Scroll window
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		List<WebElement> existingElement = driver.findElements(findExistingOrNoItem);
-		existingElement.get(0).click();
+		existingElement.get(4).click();
 		Thread.sleep(2000);
 		//Scroll window
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");

@@ -22,8 +22,12 @@ import org.testng.annotations.Test;
 import ModelClass.AllPlanningPage;
 import ModelClass.ExcelUtil;
 import ModelClass.Goals;
+import ModelClass.ObjectivesActual;
 import ModelClass.ObjectivesResults;
+import ModelClass.ObjectivesResultsAssessment;
+import ModelClass.ObjectivesStatusReports;
 import ModelClass.ObjectivesTasks;
+import ModelClass.ObjectivesUseOfResults;
 import ModelClass.PlanningUnitDetails;
 import ModelClass.SpolLoginPage;
 import jxl.read.biff.BiffException;
@@ -32,7 +36,7 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-public class ObjectivesIntendedResults {
+public class ObjectivesUseOfResultsTest {
 	WebDriver driver;
 	AllPlanningPage homepage;
 	SpolLoginPage loginpage;
@@ -40,7 +44,7 @@ public class ObjectivesIntendedResults {
 	HSSFWorkbook workbook;
 	PlanningUnitDetails planningUnitDetails;
 	Goals goals;
-	ObjectivesResults objectives;
+	ObjectivesUseOfResults objectives;
 	//define an Excel Work sheet
 	HSSFSheet sheet;
 	//define a test result data object
@@ -52,7 +56,7 @@ public class ObjectivesIntendedResults {
 	//public Workbook workbookcopy1;
 	public ArrayList<String> testcase1 = new ArrayList<String>();
 	
-	public ObjectivesIntendedResults() {
+	public ObjectivesUseOfResultsTest() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -71,7 +75,7 @@ public class ObjectivesIntendedResults {
 		homepage= new AllPlanningPage(driver);
 		loginpage= new SpolLoginPage(driver);
 		allPlanning= new AllPlanningPage(driver);
-		objectives=new ObjectivesResults(driver);
+		objectives=new ObjectivesUseOfResults(driver);
 		loginpage.typeEmailId("spaul");
 		//Thread.sleep(2000);
 		loginpage.typePassword("spaul");
@@ -95,15 +99,8 @@ public class ObjectivesIntendedResults {
 		//Click Results
 		driver.findElement(By.xpath("//button[contains(text(),'Results')]")).click();
 		Thread.sleep(5000);
-		//objectives.addIntendedResultData();
-		//objectives.deleteIntendedResultsData();
-		//Start Intended Results
-		if(objectives.getObjectiveIntendedResultLink().isDisplayed()&&objectives.getObjectiveAssessmentMeasuresLink().isDisplayed()&&objectives.getObjectiveStatusReportsLink().isDisplayed()&&objectives.getObjectiveActualResultLink().isDisplayed()&&objectives.getObjectiveUseOfResultsLink().isDisplayed()&&objectives.getObjectiveGapAnalysisLink().isDisplayed()) {
-			testcase1.add("Pass");
-		}
-		else {
-			testcase1.add("Fail");
-		}
+		//objectives.addUseOfResultsData();
+		//objectives.deleteUseOfResultsData();
 		
 		if(objectives.getObjectiveIntendedResultPageHeaderText().isDisplayed()) {
 			testcase1.add("Pass");
@@ -181,7 +178,7 @@ public class ObjectivesIntendedResults {
 			testcase1.add("Fail");
 		}
 		
-	    ExcelUtil.writeToFile(517, testcase1);		
+	    ExcelUtil.writeToFile(562, testcase1);		
 	}
 	
 	@AfterClass
