@@ -72,6 +72,22 @@ public class ObjectivesTasks {
 	By findHeaderStatusDateTaskDetail=By.cssSelector("div.task-completion-status");
 	By findTaskDetailsLink=By.xpath("//a[contains(text(),'Task Details')]");
 	By findBudgetLink=By.xpath("//a[contains(text(),'Budget')]");
+	By findBudgeDetailHeaderText=By.xpath("//label[contains(text(),'Budget Detail')]");
+	By findNewEnhanceBudgetHeaderText=By.cssSelector("div.k-window-title.k-dialog-title");
+	By findBudgetAccountField=By.xpath("//label[contains(text(),'Budget Account:')]//following::input[1]");
+	By findBudgetGLCodeField=By.xpath("//label[contains(text(),'Budget Account:')]//following::input[2]");
+	By findBudgetAccountDropDown=By.xpath("//label[contains(text(),'Budget Account:')]//following::input[1]//following::span[2]");
+	By findBudgetGLCodeDropDown=By.xpath("//label[contains(text(),'Budget Account:')]//following::input[1]//following::span[5]");
+	By findNextButtonEnable=By.cssSelector("button.btn.btn-yellow.btn-system");
+	By findFirstGLCodeRadioButton=By.xpath("//span[contains(@class,'k-link ng-star-inserted')]//following::input[2]");
+	By findEnhancedForecastDetailsHeaderText=By.cssSelector("h6.float-left.ng-star-inserted");
+	By findBudgetAmountRequiredAlertMessage=By.xpath("//span[contains(text(),'Budget Amount is required')]");
+	By findNotFundedCheckBox=By.cssSelector("input.k-checkbox.ng-pristine.ng-valid.ng-touched");
+	By findProposedAmountApproveButton=By.cssSelector("button.btn.btn-yellow.btn-system.approve-btn");
+	By findAmountInputField=By.cssSelector("input.k-input.k-formatted-value");
+	By findSaveButtonBudget=By.cssSelector("div.form-row.float-right button:last-of-type");
+	
+	
 	By findRemarksLink=By.xpath("//a[contains(text(),'Remarks')]");
 	By findRemarksPageHeaderTitle=By.xpath("//label[contains(text(),'Remarks')]");
 	By findAssignmentsLink=By.xpath("//a[contains(text(),'Assignments')]");
@@ -847,5 +863,144 @@ public class ObjectivesTasks {
 		Thread.sleep(5000);
 		List<WebElement> lists1=driver.findElements(findAssignmentAddedAdmin);
 		return lists1;
+	}
+
+	public WebElement getObjectiveClickBudgetLink() throws InterruptedException {
+		driver.findElement(findHamburgerMenu).click();
+		Thread.sleep(2000);
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		driver.findElement(findBudgetLink).click();
+		return driver.findElement(findBudgeDetailHeaderText);
+	}
+
+	public WebElement getObjectiveYearDropDown() {
+		return driver.findElement(findDescriptionDropdown);
+	}
+
+	public WebElement getObjectiveBudgetPlusIcon() {
+		return driver.findElement(findRemarksPlusIcon);
+	}
+
+	public WebElement getObjectiveNoRecordsText() {
+		return driver.findElement(findRemarksNoRecords);
+	}
+
+	public WebElement getObjectiveClickPlusIconNewEnhanceBudgetPopup() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findRemarksPlusIcon).click();
+		Thread.sleep(2000);
+		return driver.findElement(findNewEnhanceBudgetHeaderText);
+	}
+
+	public WebElement getObjectiveBudgetAccountDropDownList() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.findElement(findBudgetAccountDropDown).click();
+		Thread.sleep(2000);
+		driver.findElement(findBudgetAccountDropDown).click();
+		return driver.findElement(findBudgetAccountDropDown);
+	}
+
+	public WebElement getObjectiveBudgetGLCodeDropDownList() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.findElement(findBudgetGLCodeDropDown).click();
+		Thread.sleep(2000);
+		driver.findElement(findBudgetGLCodeDropDown).click();
+		return driver.findElement(findBudgetGLCodeDropDown);
+	}
+
+	public WebElement getObjectiveNewButtonEnabledBothDropDownSelection() throws InterruptedException, FindFailed {
+		Thread.sleep(3000);
+		driver.findElement(findBudgetAccountDropDown).click();
+		Thread.sleep(2000);
+		Screen scrn=new Screen();
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\budgetaccountdropdownselect.jpg");
+		scrn.click(pattern1);
+		Thread.sleep(2000);
+		driver.findElement(findBudgetGLCodeDropDown).click();
+		Thread.sleep(2000);
+		Screen scrn1=new Screen();
+		Pattern pattern2=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\glcodeaddnew.jpg");
+		scrn1.click(pattern2);
+		Thread.sleep(3000);
+		return driver.findElement(findNextButtonEnable);
+	}
+
+	public WebElement getObjectiveEnhancedForecastDetails() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(findFirstGLCodeRadioButton).click();
+		Thread.sleep(2000);
+		driver.findElement(findNextButtonEnable).click();
+		Thread.sleep(3000);
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		return driver.findElement(findEnhancedForecastDetailsHeaderText);
+	}
+
+	public WebElement getObjectiveBudgetAmountRequiredAlertMessage() throws InterruptedException {
+		Thread.sleep(2000);
+		List<WebElement> lists1=driver.findElements(findAmountInputField);
+		lists1.get(0).click();
+		Thread.sleep(2000);
+		lists1.get(1).click();
+		return driver.findElement(findBudgetAmountRequiredAlertMessage);
+	}
+
+	public WebElement getObjectiveNoValueApproveAmountFieldCheckBoxCheck() throws InterruptedException, FindFailed {
+		Thread.sleep(2000);
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		Thread.sleep(2000);
+		Screen scrn=new Screen();
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\uncheckednotfunded.jpg");
+		scrn.click(pattern1);
+		Thread.sleep(3000);
+		Screen scrn1=new Screen();
+		Pattern pattern2=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\checkednotfunded.jpg");
+		scrn1.click(pattern2);
+		Thread.sleep(2000);
+		List<WebElement> lists1=driver.findElements(findAmountInputField);
+		return lists1.get(1);
+	}
+
+	public WebElement getObjectiveAddValueApproveAmountFieldCheckBoxCheck() throws InterruptedException, FindFailed {
+		Thread.sleep(2000);
+//		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+//		Thread.sleep(2000);
+		List<WebElement> lists1=driver.findElements(findAmountInputField);
+//		lists1.get(1).click();
+//		lists1.get(1).clear();
+//		 JavascriptExecutor jse = (JavascriptExecutor)driver;
+//		 jse.executeScript("arguments[0].value='110';", lists1.get(1));
+		lists1.get(1).sendKeys("110");
+		Thread.sleep(3000);
+		Screen scrn=new Screen();
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\uncheckednotfunded.jpg");
+		scrn.click(pattern1);
+		Thread.sleep(2000);
+		return lists1.get(1);
+	}
+
+	public WebElement getObjectiveProposeAmountPopulatedApprovedAmountField() throws InterruptedException, FindFailed {
+		Thread.sleep(3000);
+		Screen scrn=new Screen();
+		Pattern pattern1=new Pattern(System.getProperty("user.dir")+"\\src\\resources\\images\\checkednotfunded.jpg");
+		scrn.click(pattern1);
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		Thread.sleep(2000);
+		List<WebElement> lists3=driver.findElements(findAmountInputField);
+		lists3.get(0).sendKeys("110");
+		Thread.sleep(2000);
+		driver.findElement(findProposedAmountApproveButton).click();
+		Thread.sleep(2000);
+		return lists3.get(1);
+	}
+
+	public WebElement getObjectiveAmountShowInTaskPageAfterSave() throws InterruptedException {
+		Thread.sleep(2000);
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		Thread.sleep(2000);
+		driver.findElement(findSaveButtonBudget).click();
+		Thread.sleep(2000);
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		return driver.findElement(findBudgeDetailHeaderText);
 	}	
 }
