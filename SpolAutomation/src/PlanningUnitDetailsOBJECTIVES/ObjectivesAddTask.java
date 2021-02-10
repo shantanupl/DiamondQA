@@ -304,6 +304,8 @@ public class ObjectivesAddTask {
 			testcase1.add("Fail");
 
 		}
+		objectives.deleteExistingTask();
+		
 		if(objectives.getObjectiveStartDateTaskDetails().isDisplayed()
 				&&objectives.getObjectiveDueDateTaskDetails().isDisplayed()&&objectives.getObjectiveTaskTypeTaskDetails().isDisplayed()
 				&&objectives.getObjectivePriorityTaskDetails().isDisplayed()&&objectives.getObjectiveStatusTaskDetails().isDisplayed()&&objectives.getObjectiveBudgetRequestTaskDetails().isDisplayed()&&objectives.getObjectiveApprovedTaskDetails().isDisplayed()) {
@@ -366,12 +368,14 @@ public class ObjectivesAddTask {
 			testcase1.add("Fail");
 
 		}
+		objectives.deleteExistingTask();
 
 	    ExcelUtil.writeToFile(408, testcase1);		
 	}
 	
 	@AfterClass
-	public void afterSuite() {
+	public void afterSuite() throws InterruptedException {
+		Thread.sleep(3000);
 		driver.close();
 		driver.quit();
 	}

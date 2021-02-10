@@ -1,5 +1,6 @@
 package ModelClass;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -121,6 +122,11 @@ public class ObjectivesTasks {
 	By findRemarksDeletePopupDeleteButton=By.cssSelector("button.btn.btn-yellow.btn-system.ng-star-inserted");
 	By findRemarksNoRecords=By.cssSelector("div.table-cell span:nth-of-type(1)");
 	By findRemarksEditCalendar=By.cssSelector("span.k-icon.k-i-calendar");
+	
+	By findThreeDotOption=By.cssSelector("span#dropdownMenuButton");
+	By findDeleteOption=By.xpath("//a[contains(text(),'Delete')]");
+	By findDeleteConfirmationHeader=By.xpath("//div[contains(text(),'Are you sure you want to delete this Record?')]");
+	By findDeleteButtonFromPopup=By.xpath("//button[contains(text(),'Delete')]");
 	
 	public WebElement isTasksRowPlusButtonVisible() {
 		return driver.findElement(tasksRowPlusButton);
@@ -1003,4 +1009,23 @@ public class ObjectivesTasks {
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		return driver.findElement(findBudgeDetailHeaderText);
 	}	
+	
+	public int deleteExistingTask() throws InterruptedException {
+		Thread.sleep(2000);
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		List<WebElement> existingElement = driver.findElements(findHamburgerMenu);
+		//Thread.sleep(2000);
+		existingElement.get(0).click();
+		Thread.sleep(2000);
+		//Scroll window
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight);");
+		driver.findElement(findThreeDotOption).click();
+		Thread.sleep(2000);
+		driver.findElement(findDeleteOption).click();
+		Thread.sleep(2000);
+		driver.findElement(findDeleteButtonFromPopup).click();
+		Thread.sleep(5000);
+		return 0;
+	}
 }

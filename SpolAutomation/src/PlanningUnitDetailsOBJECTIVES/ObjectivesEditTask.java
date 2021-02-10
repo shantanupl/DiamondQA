@@ -133,7 +133,9 @@ public class ObjectivesEditTask {
 			testcase1.add("Fail");
 		}
 		
-	    ExcelUtil.writeToFile(441, testcase1);		
+	    ExcelUtil.writeToFile(441, testcase1);
+	    Thread.sleep(3000);
+	    objectives.deleteExistingTask();
 	}
 	
 	

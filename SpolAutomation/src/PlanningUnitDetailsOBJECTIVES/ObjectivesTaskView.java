@@ -69,7 +69,7 @@ public class ObjectivesTaskView {
 		objectives=new ObjectivesTasks(driver);
 		loginpage.typeEmailId("spaul");
 		//Thread.sleep(2000);
-		loginpage.typePassword("sp123");
+		loginpage.typePassword("spaul");
 		//Thread.sleep(2000);
 		loginpage.clickSignIn();
 		WebDriverWait wait = new WebDriverWait(driver,100);
